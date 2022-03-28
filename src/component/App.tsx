@@ -1,14 +1,15 @@
 import * as React from 'react'
-import { Button, ButtonGroup, Container, Paper, Box, Stack, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
-import { PhotoCamera, PlayArrow, FastRewind, FastForward } from '@mui/icons-material';
+import { Box, Button, ButtonGroup, Paper, Select, MenuItem, FormControl, InputLabel, ToggleButton, IconButton } from '@mui/material';
+import { PhotoCamera, PlayArrow, FastRewind, FastForward, AllInclusive } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
+
 import Grid from "@mui/material/Grid";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { grey, blueGrey } from '@mui/material/colors';
 import { WebCam } from '../utils/webcam';
 import { DiskUtil } from '../utils/disk';
+import Timeline from './timeline'
 
 const theme = createTheme({
   palette: {
@@ -98,10 +99,19 @@ const App = () => {
                           <Grid item >
                             <Paper elevation={10}  >
                               <ButtonGroup>
-                                <Button id="open" variant="contained"><FastRewind /></Button>
-                                <Button id="open" variant="contained"><PlayArrow /></Button>
-                                <Button id="open" variant="contained"><FastForward /></Button>
-                                <Button id="open" variant="contained" onClick={onCapture}><PhotoCamera /></Button>
+                                <IconButton id="open" ><FastRewind /></IconButton>
+                                <IconButton id="open" ><PlayArrow /></IconButton>
+                                <IconButton id="open" ><FastForward /></IconButton>
+                                <IconButton id="open" onClick={onCapture}><PhotoCamera /></IconButton>
+                                <ToggleButton
+                                  value="check"
+                                  selected={true}
+                                  onChange={() => {
+
+                                  }}
+                                >
+                                  <AllInclusive />
+                                </ToggleButton>
                               </ButtonGroup>
                             </Paper>
                           </Grid>
@@ -124,70 +134,7 @@ const App = () => {
           </Grid>
         </Grid>
       </Box>
-      <Box sx={{
-
-      }}>
-        <div style={{
-          padding: '0.1px',
-          backgroundColor: 'rgb(35, 35, 24)',
-          position: 'fixed',
-          bottom: 10,
-          left: 0,
-          width: '100%',
-
-        }}>
-          <Paper elevation={4} sx={{ p: .5 }}>
-            <Stack direction="row" sx={{
-              padding: '2px',
-              width: '100%',
-              overflowX: "scroll",
-            }}>
-              {
-                [...Array(100).keys()].map((value, index) => {
-                  return (
-                    <Box sx={{
-                      margin: '0 3px 0 3px',
-                    }}><Paper elevation={value == 3 ? 24 : 2}>
-                        <Box sx={{
-                          height: 75,
-                          width: 75,
-                          alignContent: 'center',
-                          overflow: 'hidden',
-                          borderRadius: '4px',
-                          borderBottomStyle: value == 3 ? 'solid' : 'auto',
-                          borderBottomWidth: '5px',
-                          borderBottomColor: 'white',
-
-                        }}>
-                          <div style={{
-                            position: 'relative',
-                            width: '100%',
-                            height: '100%',
-                          }}>
-                            <div style={{
-                              textAlign: 'center',
-                              padding: '1px',
-                              position: 'absolute',
-                              bottom: 0,
-                              left: 0,
-                              width: '100%',
-                              userSelect: 'none'
-                            }}>
-                              <Typography
-                                variant='caption'
-                              >
-                                image01
-                              </Typography></div>
-                          </div>
-                        </Box>
-                      </Paper>
-                    </Box>)
-                })
-              }
-            </Stack>
-          </Paper >
-        </div >
-      </Box >
+      <Timeline />
     </ThemeProvider >
   )
 }
