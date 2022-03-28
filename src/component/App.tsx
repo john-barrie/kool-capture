@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Box, Button, ButtonGroup, Paper, Select, MenuItem, FormControl, InputLabel, ToggleButton, IconButton } from '@mui/material';
-import { PhotoCamera, PlayArrow, FastRewind, FastForward, AllInclusive } from '@mui/icons-material';
+import { PhotoCamera, PlayArrow, FastRewind, FastForward, AllInclusive, KeyboardDoubleArrowLeft, KeyboardArrowLeft, KeyboardArrowRight, KeyboardDoubleArrowRight } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 
 import Grid from "@mui/material/Grid";
@@ -99,13 +99,15 @@ const App = () => {
                           <Grid item >
                             <Paper elevation={10}  >
                               <ButtonGroup>
-                                <IconButton id="open" ><FastRewind /></IconButton>
+                                <IconButton id="open" ><KeyboardDoubleArrowLeft /></IconButton>
+                                <IconButton id="open" ><KeyboardArrowLeft /></IconButton>
                                 <IconButton id="open" ><PlayArrow /></IconButton>
-                                <IconButton id="open" ><FastForward /></IconButton>
+                                <IconButton id="open" ><KeyboardArrowRight /></IconButton>
+                                <IconButton id="open" ><KeyboardDoubleArrowRight /></IconButton>
                                 <IconButton id="open" onClick={onCapture}><PhotoCamera /></IconButton>
                                 <ToggleButton
                                   value="check"
-                                  selected={true}
+                                  selected={false}
                                   onChange={() => {
 
                                   }}
